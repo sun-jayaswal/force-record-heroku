@@ -30,28 +30,6 @@ import javax.servlet.http.*;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.sforce.soap.metadata.AsyncResult;
-import com.sforce.soap.metadata.CustomField;
-import com.sforce.soap.metadata.CustomObject;
-import com.sforce.soap.metadata.MetadataConnection;
-import com.sforce.soap.metadata.PackageTypeMembers;
-import com.sforce.soap.metadata.RetrieveRequest;
-import com.sforce.soap.metadata.RetrieveResult;
-import com.sforce.soap.metadata.ValidationRule;
-import com.sforce.soap.metadata.DeploymentStatus;
-import com.sforce.soap.metadata.SharingModel;
-import com.sforce.soap.metadata.FieldType;
-import com.sforce.soap.metadata.ListMetadataQuery;
-import com.sforce.soap.metadata.FileProperties;
-import com.sforce.soap.metadata.DescribeMetadataResult;
-import com.sforce.soap.metadata.DescribeMetadataObject;
-
-import com.sforce.ws.ConnectionException;
-import com.sforce.ws.ConnectorConfig;
-import com.sforce.ws.bind.TypeMapper;
-import com.sforce.ws.parser.PullParserException;
-import com.sforce.ws.parser.XmlInputStream;
-
 import java.net.HttpURLConnection;
 import java.net.URL;
 import javax.net.ssl.HttpsURLConnection;
