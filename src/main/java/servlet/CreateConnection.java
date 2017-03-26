@@ -104,7 +104,7 @@ public class CreateConnection extends HttpServlet
 			
 			for (int i = 0; i < jsonarray.length(); i++) 
 			{
-				JSONObject jsonobject = jsonarray.getJSONObject(i);
+				JSONObject requestJSON = jsonarray.getJSONObject(i);
 				
 				String Connection_Id = requestJSON.getString("Connection_Id");
 				String Access_Token = requestJSON.getString("Access_Token");
