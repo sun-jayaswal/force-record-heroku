@@ -38,6 +38,8 @@ import java.text.SimpleDateFormat;
 
 import java.math.BigInteger;
 
+import javax.json.JSONArray;
+
 public class CreateConnection extends HttpServlet 
 {
 	public JSONObject jsonObject;
