@@ -106,7 +106,6 @@ public class CreateConnection extends HttpServlet
 			String project = requestJSON.getString("project");
 			String Refresh_Token = requestJSON.getString("Refresh_Token");
 			String Development_Environment_URL = requestJSON.getString("Development_Environment_URL");
-			String Site_URL = requestJSON.getString("Site_URL");
 							
 			if(Connection_Id == null || Connection_Id.equals("") || Access_Token == null || Access_Token.equals("") || Organization_URL == null || Organization_URL.equals("") || Refresh_Token == null || Refresh_Token.equals("") || Development_Environment_URL == null || Development_Environment_URL.equals("") || Site_URL == null || Site_URL.equals(""))
 			{
@@ -134,7 +133,6 @@ public class CreateConnection extends HttpServlet
 			pstmt.setString(6, Refresh_Token);
 			pstmt.setTimestamp(7, sqlDate);
 			pstmt.setString(8, Development_Environment_URL);
-			pstmt.setString(9, Site_URL);
 			
 			int rowCount = pstmt.executeUpdate();
 			pstmt.close();
