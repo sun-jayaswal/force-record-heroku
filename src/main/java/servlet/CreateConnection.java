@@ -38,7 +38,7 @@ import java.text.SimpleDateFormat;
 
 import java.math.BigInteger;
 
-import javax.json.JSONArray;
+import javax.json.JsonArray;
 
 public class CreateConnection extends HttpServlet 
 {
