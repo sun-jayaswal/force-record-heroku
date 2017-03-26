@@ -59,7 +59,7 @@ public class CreateConnection extends HttpServlet
 		
 		if(paramValue != null)
 		{
-			//createRecord(paramValue);
+			createRecord(paramValue);
 		}
 	
 		out.print(jsonObject.toString());
@@ -91,7 +91,7 @@ public class CreateConnection extends HttpServlet
 		}
 		return null;
 	}
-	/*private void createRecord(String paramValue)
+	private void createRecord(String paramValue)
 	{
 		try
 		{
@@ -170,5 +170,5 @@ public class CreateConnection extends HttpServlet
 		String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + dbUri.getPath();
 
 		return DriverManager.getConnection(dbUrl, username, password);
-    }*/
+    }
 }
