@@ -17,6 +17,9 @@ import org.apache.tomcat.util.scan.StandardJarScanFilter;
 import java.util.List;
 import java.util.ArrayList;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+
 public class Main {
 	
     private static File getRootFolder() {
