@@ -123,7 +123,7 @@ public class CreateConnection extends HttpServlet
 			java.util.Date utilDate  = new java.util.Date();
 			java.sql.Timestamp sqlDate = new java.sql.Timestamp(utilDate.getTime());
 			
-			String insertQuery = "INSERT INTO Connection(Connection_Id, Access_Token, Organization_Id, Organization_URL,  project, Refresh_Token, Modified_Date, Development_Environment_URL, Site_URL)"+ " VALUES (?, ?, ?, ?, ?, ?, ?,?,?)";
+			String insertQuery = "INSERT INTO Connection(Connection_Id, Access_Token, Organization_Id, Organization_URL,  project, Refresh_Token, Modified_Date, Development_Environment_URL)"+ " VALUES (?, ?, ?, ?, ?, ?, ?,?)";
 			PreparedStatement pstmt = con.prepareStatement(insertQuery);
 			
 			pstmt.setString(1, Connection_Id);
