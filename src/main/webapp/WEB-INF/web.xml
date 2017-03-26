@@ -1,0 +1,13 @@
+<web-app>  
+
+<servlet>  
+	<servlet-name>Create</servlet-name>  
+	<servlet-class>CreateConnection</servlet-class>  
+</servlet>  
+  
+<servlet-mapping>  
+	<servlet-name>Create</servlet-name>  
+	<url-pattern>/connection/create</url-pattern>  
+</servlet-mapping> 
+
+</web-app>  
