@@ -27,8 +27,8 @@ import java.sql.Timestamp;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+//import org.json.JSONException;
+//import org.json.JSONObject;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -39,10 +39,11 @@ import java.text.SimpleDateFormat;
 import java.math.BigInteger;
 
 import javax.json.JsonArray;
+import javax.json.JsonObject;
 
 public class CreateConnection extends HttpServlet 
 {
-	public JSONObject jsonObject;
+	public JsonObject jsonObject;
 	//private String connectionId;
 	private static Connection con;
 	private double asOfVersion = 37.0;
@@ -51,7 +52,7 @@ public class CreateConnection extends HttpServlet
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException , IOException
 	{
 		//String empName = req.getParameter("Connection_Id");
-		jsonObject = new JSONObject();
+		jsonObject = new JsonObject();
 	
 		res.setContentType("application/json");
 		PrintWriter out = res.getWriter();
