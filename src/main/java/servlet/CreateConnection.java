@@ -46,9 +46,11 @@ public class CreateConnection extends HttpServlet
 	private static Connection con;
 	private double asOfVersion = 37.0;
 	private String SoapEndPoint = "/services/Soap/m/37.0";
+	static int rowCount;
 	
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException , IOException
 	{
+		rowCount = 0;
 		//String empName = req.getParameter("Connection_Id");
 		jsonObject = new JSONObject();
 	
@@ -98,57 +100,54 @@ public class CreateConnection extends HttpServlet
 		{
 			con = getConnection();
 			
-			/*JSONArray jsonarray = new JSONArray(jsonStr);
+			JSONArray jsonarray = new JSONArray(paramValue);
+			
 			for (int i = 0; i < jsonarray.length(); i++) 
 			{
-				JsonObject jsonobject = jsonarray.getJSONObject(i);
-				String name = jsonobject.getString("name");
-				String url = jsonobject.getString("url");
-			}*/
-			
-			JSONObject requestJSON = new JSONObject(paramValue);
-			
-			String Connection_Id = requestJSON.getString("Connection_Id");
-			String Access_Token = requestJSON.getString("Access_Token");
-			String Organization_Id = requestJSON.getString("Organization_Id");
-			String Organization_URL = requestJSON.getString("Organization_URL");
-			String project = requestJSON.getString("project");
-			String Refresh_Token = requestJSON.getString("Refresh_Token");
-			String Development_Environment_URL = requestJSON.getString("Development_Environment_URL");
-			String Site_URL = requestJSON.getString("Site_URL");
-							
-			if(Connection_Id == null || Connection_Id.equals("") || Access_Token == null || Access_Token.equals("") || Organization_URL == null || Organization_URL.equals("") || Refresh_Token == null || Refresh_Token.equals("") || Development_Environment_URL == null || Development_Environment_URL.equals("") || Site_URL == null || Site_URL.equals(""))
-			{
-				try
+				JSONObject jsonobject = jsonarray.getJSONObject(i);
+				
+				String Connection_Id = requestJSON.getString("Connection_Id");
+				String Access_Token = requestJSON.getString("Access_Token");
+				String Organization_Id = requestJSON.getString("Organization_Id");
+				String Organization_URL = requestJSON.getString("Organization_URL");
+				String project = requestJSON.getString("project");
+				String Refresh_Token = requestJSON.getString("Refresh_Token");
+				String Development_Environment_URL = requestJSON.getString("Development_Environment_URL");
+				String Site_URL = requestJSON.getString("Site_URL");
+								
+				if(Connection_Id == null || Connection_Id.equals("") || Access_Token == null || Access_Token.equals("") || Organization_URL == null || Organization_URL.equals("") || Refresh_Token == null || Refresh_Token.equals("") || Development_Environment_URL == null || Development_Environment_URL.equals("") || Site_URL == null || Site_URL.equals(""))
 				{
-					jsonObject.put("status",  "Failed");
-					jsonObject.put("message",  "Connection creation failed due to some missing parameters, please try again");
+					try
+					{
+						jsonObject.put("status",  "Failed");
+						jsonObject.put("message",  "Connection creation failed due to some missing parameters, please try again");
+					}
+					catch(JSONException ex2)
+					{}
+					return;
 				}
-				catch(JSONException ex2)
-				{}
-				return;
+				
+				java.util.Date utilDate  = new java.util.Date();
+				java.sql.Timestamp sqlDate = new java.sql.Timestamp(utilDate.getTime());
+				
+				String insertQuery = "INSERT INTO Connection(Connection_Id, Access_Token, Organization_Id, Organization_URL,  project, Refresh_Token, Modified_Date, Development_Environment_URL)"+ " VALUES (?, ?, ?, ?, ?, ?, ?,?)";
+				PreparedStatement pstmt = con.prepareStatement(insertQuery);
+				
+				pstmt.setString(1, Connection_Id);
+				pstmt.setString(2, Access_Token);
+				pstmt.setString(3, Organization_Id);
+				pstmt.setString(4, Organization_URL);
+				pstmt.setString(5, project);
+				pstmt.setString(6, Refresh_Token);
+				pstmt.setTimestamp(7, sqlDate);
+				pstmt.setString(8, Development_Environment_URL);
+				//pstmt.setString(9, Site_URL);
+				
+				rowCount += pstmt.executeUpdate();
+				pstmt.close();
+			
 			}
 			
-			java.util.Date utilDate  = new java.util.Date();
-			java.sql.Timestamp sqlDate = new java.sql.Timestamp(utilDate.getTime());
-			
-			String insertQuery = "INSERT INTO Connection(Connection_Id, Access_Token, Organization_Id, Organization_URL,  project, Refresh_Token, Modified_Date, Development_Environment_URL)"+ " VALUES (?, ?, ?, ?, ?, ?, ?,?)";
-			PreparedStatement pstmt = con.prepareStatement(insertQuery);
-			
-			pstmt.setString(1, Connection_Id);
-			pstmt.setString(2, Access_Token);
-			pstmt.setString(3, Organization_Id);
-			pstmt.setString(4, Organization_URL);
-			pstmt.setString(5, project);
-			pstmt.setString(6, Refresh_Token);
-			pstmt.setTimestamp(7, sqlDate);
-			pstmt.setString(8, Development_Environment_URL);
-			//pstmt.setString(9, Site_URL);
-			
-			int rowCount = pstmt.executeUpdate();
-			pstmt.close();
-			
-				
 			if(rowCount > 0)
 			{
 				jsonObject.put("status",  "Success");	
