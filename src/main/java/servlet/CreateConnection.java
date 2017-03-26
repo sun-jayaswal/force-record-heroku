@@ -29,6 +29,7 @@ import javax.servlet.http.*;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONArray;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -38,12 +39,9 @@ import java.text.SimpleDateFormat;
 
 import java.math.BigInteger;
 
-import javax.json.JsonArray;
-import javax.json.JsonObject;
-
 public class CreateConnection extends HttpServlet 
 {
-	public JsonObject jsonObject;
+	public JSONObject jsonObject;
 	//private String connectionId;
 	private static Connection con;
 	private double asOfVersion = 37.0;
@@ -52,7 +50,7 @@ public class CreateConnection extends HttpServlet
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException , IOException
 	{
 		//String empName = req.getParameter("Connection_Id");
-		jsonObject = new JsonObject();
+		jsonObject = new JSONObject();
 	
 		res.setContentType("application/json");
 		PrintWriter out = res.getWriter();
@@ -99,6 +97,14 @@ public class CreateConnection extends HttpServlet
 		try
 		{
 			con = getConnection();
+			
+			/*JSONArray jsonarray = new JSONArray(jsonStr);
+			for (int i = 0; i < jsonarray.length(); i++) 
+			{
+				JsonObject jsonobject = jsonarray.getJSONObject(i);
+				String name = jsonobject.getString("name");
+				String url = jsonobject.getString("url");
+			}*/
 			
 			JSONObject requestJSON = new JSONObject(paramValue);
 			
