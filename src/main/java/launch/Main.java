@@ -88,6 +88,7 @@ public class Main {
         ctx.setResources(resources);
 		
 	System.out.println("Hello test change made..!");
+	System.out.println("Hello test change made..!");
         tomcat.start();
         tomcat.getServer().await();
     }
