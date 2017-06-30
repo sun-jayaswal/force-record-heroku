@@ -87,6 +87,7 @@ public class Main {
         resources.addPreResources(resourceSet);
         ctx.setResources(resources);
 		
+	System.out.println("Hello test change made..!");
         tomcat.start();
         tomcat.getServer().await();
     }
